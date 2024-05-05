@@ -13,23 +13,27 @@ function createMat(SIZE) {
 }
 
 
-// function findRandomEmptyCell() {
-//     var emptyCells = []
+function findRandomEmptyCell(board) {
+    var emptyCells = []
 
-//     for (var i = 1; i < gBoard.length - 1; i++) {
-//         for (var j = 1; j < gBoard[i].length - 1; j++) {
-//             const cell = gBoard[i][j]
-//             if (cell === EMPTY) emptyCells.push({ i, j })
-//         }
-//     }
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            const cell = board[i][j]
+            if (!cell.isMine) emptyCells.push({ i, j })
+        }
+    }
 
-//     if (emptyCells.length === 0) return null
+    if (emptyCells.length === 0) return null
 
-//     const randomCellIdx = getRandomIntInclusive(0, emptyCells.length)
-//     return emptyCells[randomCellIdx]
-// }
+    const randomCellIdx = getRandomInt(0, emptyCells.length)
+    return emptyCells[randomCellIdx]
+}
 
 
-// function getRandomIntInclusive(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1)) + min
-// }
+function getRandomIntInclusive(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min
+}

@@ -15,9 +15,18 @@ h1 {
 }
 
 .cell {
-    background-color: antiquewhite;
-    color: blue;
+    background-color: rgb(241, 240, 196);
+    color: rgb(17, 10, 122);
 	width: 40px;
 	height: 40px;
 	font-size: 1.5em;
+}
+
+.closed {
+    background-color: bisque;
+}
+
+footer {
+    font-size: 50px;
+    padding-top: 50px;
 }

@@ -5,6 +5,7 @@ var SIZE = 4
 const MINE = `*`
 const FLAG = `#`
 const EMPTY = ` `
+const CLOSED = ` `
 
 var gBoard 
 var gLevel
@@ -14,15 +15,21 @@ var gGame
 
 function onInit() {
     
-    gBoard = buildBoard(SIZE)
+    gLevel = {
+        SIZE: 4,
+        MINES: 2
+    }
 
+
+    gBoard = buildBoard(gLevel)
+    
     renderBoard(gBoard)
 
 }
 
-function buildBoard(SIZE) {
+function buildBoard(level) {
 
-    const board = createMat(SIZE)
+    const board = createMat(level.SIZE)
 
 
     for (var i = 0; i < board.length; i++) {
@@ -32,10 +39,10 @@ function buildBoard(SIZE) {
     }
 
 
-    board[0][1].isMine = true
-    board[3][3].isMine = true
+    // board[0][1].isMine = true
+    // board[3][3].isMine = true
 
-    debugger
+    setMines(level, board)
     setMinesNegsCount(board)
 
     console.log(board)
@@ -64,11 +71,8 @@ function renderBoard(board) {
     for (var i = 0; i < board.length; i++) {
 		strHTML += '<tr>'
 		for (var j = 0; j < board[0].length; j++) {
-			const cell = board[i][j]
-            const className = `cell cell-${i}-${j}`
-            const elCell = document.querySelector(`.cell-${i}-${j}`)
-            
-            strHTML += `<td class="${className}" onclick = "onCellClick(elCell, i, j)">${renderCell(cell)}</td>`
+            strHTML += renderCell(i, j)
+
 		}
 
 		strHTML += '</tr>'
@@ -79,18 +83,39 @@ function renderBoard(board) {
     const elBoard = document.querySelector(".board-container")
     elBoard.innerHTML = strHTML
 
+}
+
+
+function renderCell(i, j) {
+
+    const cell = gBoard[i][j]
+    var className = `cell cell-${i}-${j}`
+    if(!cell.isShown)className += ` closed`
+    const elCell = document.querySelector(`.cell-${cell.i}-${j}`)
+
+    return `<td class="${className}" onclick = "onCellClicked(${i}, ${j})">${getElCellContent(cell, elCell)}</td>`
+
 
 }
 
 
-function renderCell(cell) {
-
+function getElCellContent(cell) {
+    if (!cell.isShown) return CLOSED 
     if(cell.isMine) return MINE
     if(cell.minesAroundCount) return cell.minesAroundCount
     return EMPTY
 
 }
 
+
+function setMines(level, board) {
+
+    for (var i = 0; i < level.MINES; i++) {
+        const cell = findRandomEmptyCell(board)
+        board[cell.i][cell.j].isMine = true
+    }
+
+}
 
 
 function setMinesNegsCount(board) {
@@ -133,9 +158,14 @@ function countMines(cell, board){
 }
 
 
-function onCellClicked(elCell, i, j) {
+function onCellClicked(i, j) {
 
-    console.log(`hi`)
+    const cell = gBoard[i][j]
+    const elCell = document.querySelector(`.cell-${i}-${j}`)
+
+    cell.isShown = true
+
+    renderBoard(gBoard)
 
 }
 
