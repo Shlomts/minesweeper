@@ -1,0 +1,23 @@
+body {
+    background-color: black;
+    color: aquamarine;
+    text-align: center;
+}
+
+h1 {
+    color: rgb(255, 224, 150);
+    font-size: 70px;
+    padding: auto;
+}
+
+.board-container {
+    margin-left: 43%;
+}
+
+.cell {
+    background-color: antiquewhite;
+    color: blue;
+	width: 40px;
+	height: 40px;
+	font-size: 1.5em;
+}
