@@ -1,30 +1,36 @@
 'use strict'
 
-var SIZE = 4
-
-const MINE = `*`
-const FLAG = `#`
-const EMPTY = ` `
-const CLOSED = ` `
-
 var gBoard 
-var gLevel
+var gLevel = {
+    SIZE: 8,
+    MINES: 14
+}
 var gGame
 
 
 
 function onInit() {
-    
-    gLevel = {
-        SIZE: 4,
-        MINES: 2
-    }
-
 
     gBoard = buildBoard(gLevel)
-    
     renderBoard(gBoard)
 
+    gGame = {
+        isOn: true,
+        shownCount: 0,
+        markedCount: 0,
+        secsPassed: 0
+    }
+       
+
+}
+
+
+function updateLevel(size = 8, mines = 14) {
+    
+    gLevel.SIZE = size
+    gLevel.MINES = mines
+
+    onInit()
 }
 
 function buildBoard(level) {
@@ -56,7 +62,7 @@ function createCell() {
         minesAroundCount: 0,
         isShown: false,
         isMine: false,
-        isMarked: true
+        isMarked: false
     }
        
     return CELL
@@ -93,17 +99,18 @@ function renderCell(i, j) {
     if(!cell.isShown)className += ` closed`
     const elCell = document.querySelector(`.cell-${cell.i}-${j}`)
 
-    return `<td class="${className}" onclick = "onCellClicked(${i}, ${j})">${getElCellContent(cell, elCell)}</td>`
-
-
+    return `<td class="${className}" onclick = "onCellClicked(${i}, ${j})" 
+    oncontextmenu="javascript:onCellMarked(${i} ,${j}); return false">${getElCellContent(cell, elCell)}</td>`
 }
 
 
 function getElCellContent(cell) {
-    if (!cell.isShown) return CLOSED 
-    if(cell.isMine) return MINE
+    if (cell.isMarked) return `<img src="img/flag.png" alt="flag">`
+
+    if (!cell.isShown) return ` ` 
+    if (cell.isMine) return `<img src="img/bomb.png" alt="bomb">`
     if(cell.minesAroundCount) return cell.minesAroundCount
-    return EMPTY
+    return ` `
 
 }
 
@@ -160,9 +167,17 @@ function countMines(cell, board){
 
 function onCellClicked(i, j) {
 
+    if (!gGame.isOn) return
+
     const cell = gBoard[i][j]
     const elCell = document.querySelector(`.cell-${i}-${j}`)
 
+    if (cell.isMine) {
+        lostGame()
+        return
+    } 
+
+    if (cell.isMarked) return
     cell.isShown = true
 
     renderBoard(gBoard)
@@ -170,11 +185,37 @@ function onCellClicked(i, j) {
 }
 
 
-function onCellMarked(elCell) {
+function onCellMarked(i, j) {
+
+    if(gBoard[i][j].isShown || !gGame.isOn) return
+
+    gBoard[i][j].isMarked = !gBoard[i][j].isMarked
+    renderBoard(gBoard)
 
 }
 
+
+function lostGame() {
+
+    gGame.isOn = false
+
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[i].length; j++) {
+            if (gBoard[i][j].isMine) gBoard[i][j].isShown = true
+        }
+    }
+
+    renderBoard(gBoard)
+
+    alert(`YOU LOST`)
+
+}
+
+
 function checkGameOver() {
+
+    
+
 
 }
 

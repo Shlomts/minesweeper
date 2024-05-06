@@ -10,23 +10,51 @@ h1 {
     padding: auto;
 }
 
+img {
+    padding: 2px;
+    height: 32px;
+}
+
+table {
+    border-collapse: separate ;
+    border-spacing: 3px ;
+
+    margin: 0 auto;
+}
+
 .board-container {
-    margin-left: 43%;
+    margin: 0 auto;
 }
 
 .cell {
     background-color: rgb(241, 240, 196);
     color: rgb(17, 10, 122);
+    border-radius: 12px;
+    padding: 5px;
 	width: 40px;
 	height: 40px;
 	font-size: 1.5em;
 }
 
 .closed {
+    border-radius: 8px;
     background-color: bisque;
 }
 
 footer {
     font-size: 50px;
     padding-top: 50px;
+    margin-bottom: 0vh;
+}
+
+.levels {
+    padding-bottom: 20px;
+}
+
+.levels button{
+    height: 30px;
+    width: 80px;
+    margin: 0 5px;
+    border-radius: 8px;
+    background-color: aqua;
 }
