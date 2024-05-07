@@ -13,12 +13,13 @@ function createMat(SIZE) {
 }
 
 
-function findRandomEmptyCell(board) {
+function findRandomEmptyCell(board, cellI, cellJ) {
     var emptyCells = []
 
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[i].length; j++) {
             const cell = board[i][j]
+            if (i === cellI && j === cellJ) continue
             if (!cell.isMine) emptyCells.push({ i, j })
         }
     }

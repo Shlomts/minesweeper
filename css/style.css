@@ -12,7 +12,7 @@ h1 {
 
 img {
     padding: 2px;
-    height: 32px;
+    height: 30px;
 }
 
 table {
@@ -41,12 +41,6 @@ table {
     background-color: bisque;
 }
 
-footer {
-    font-size: 50px;
-    padding-top: 50px;
-    margin-bottom: 0vh;
-}
-
 .levels {
     padding-bottom: 20px;
 }
@@ -57,4 +51,44 @@ footer {
     margin: 0 5px;
     border-radius: 8px;
     background-color: aqua;
+}
+
+.game-over {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 30px;
+
+    width: 400px;
+    height: 250px;  
+
+    background-color: rgb(192, 247, 109);
+    color: blue;
+}
+
+.game-over h3{
+    font-size: 50px;
+}
+
+
+.game-over button{
+    height: 50px;
+    width: 90px;
+    border-color: aquamarine;
+    margin: 0 5px;
+    border-radius: 8px;
+    background-color: aqua;
+}
+
+
+.hidden {
+    display: none;
+}
+
+footer {
+    font-size: 50px;
+    padding-top: 50px;
 }
