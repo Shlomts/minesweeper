@@ -1,13 +1,18 @@
+
 body {
     background-color: black;
     color: aquamarine;
     text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 h1 {
     color: rgb(255, 224, 150);
-    font-size: 70px;
+    font-size: 150px;
     padding: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
 }
 
 img {
@@ -20,6 +25,7 @@ table {
     border-spacing: 3px ;
 
     margin: 0 auto;
+    margin-top: 10px;
 }
 
 .board-container {
@@ -41,16 +47,31 @@ table {
     background-color: bisque;
 }
 
-.levels {
+.levels-container {
     padding-bottom: 20px;
 }
 
-.levels button{
+.levels-container button {
     height: 30px;
     width: 80px;
     margin: 0 5px;
     border-radius: 8px;
     background-color: aqua;
+}
+
+
+.lives {
+    font-size: 20px;
+}
+
+.smiley {
+    cursor: pointer;
+    margin-left: 40px;
+    font-size: 35px;
+}
+
+.hints {
+    margin-left: 40px;
 }
 
 .game-over {
@@ -60,17 +81,18 @@ table {
     left: 0;
     right: 0;
     margin: auto;
+    margin-top: 400px;
     border-radius: 30px;
 
     width: 400px;
-    height: 250px;  
+    height: 200px;  
 
     background-color: rgb(192, 247, 109);
     color: blue;
 }
 
 .game-over h3{
-    font-size: 50px;
+    font-size: 30px;
 }
 
 

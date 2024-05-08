@@ -10,15 +10,22 @@ var gGame
 function onInit() {
 
     document.querySelector(`.game-over`).classList.add(`hidden`)
+    
+    
     gBoard = buildBoard(gLevel)
-    renderBoard(gBoard)
 
     gGame = {
         isOn: true,
         shownCount: 0,
         markedCount: 0,
-        secsPassed: 0
+        secsPassed: 0,
+        lives: 3,
+        hints: 3
     }
+
+    renderBoard(gBoard)
+    renderLives()
+    renderSmiley()
        
 }
 
@@ -185,8 +192,16 @@ function onCellClicked(i, j) {
     }
 
     if (cell.isMine) {
-        lostGame()
-        return
+
+        gGame.lives--
+        renderLives()
+
+
+        if (!gGame.lives) {
+            lostGame()
+            return
+        }
+
     } 
 
     renderBoard(gBoard)
@@ -204,6 +219,45 @@ function onCellMarked(i, j) {
 }
 
 
+function renderLives() {
+
+    var elLives = document.querySelector(`.lives`)
+    var hearts = ``
+
+    for (var i = 1; i <= gGame.lives; i++) {
+        hearts += `❤️`
+    }
+
+
+    elLives.innerHTML = hearts
+}
+
+
+function renderSmiley(mode) {
+
+    var elSmiley = document.querySelector(`.smiley`)
+
+    switch (mode) {
+        case `lose`:
+            elSmiley.innerHTML = `🤮`
+            break;
+
+        case `win`:
+            elSmiley.innerHTML = `😍`
+            break;
+    
+        default:
+            elSmiley.innerHTML = `😁`
+            break;
+    }
+
+}
+
+
+function onHint(elThis) {
+
+    elThis.innerHTML = `💥`
+}
 
 function gameOver(isWin) {
 
@@ -227,6 +281,7 @@ function checkWin() {
 
     if (gGame.shownCount === unminedCells) {
         renderBoard(gBoard)
+        renderSmiley(`win`)
         gameOver(true)
     } 
 }

@@ -13,10 +13,20 @@
 
     <h1>Minesweeper</h1>
 
-    <div class="levels">
+    <div class="levels-container">
         <button onclick="updateLevel(4, 2)">EASY</button>
         <button onclick="updateLevel(8, 14)">MEDIUM</button>
         <button onclick="updateLevel(12, 32)">HARD</button>
+    </div>
+
+    <div class="extra-features-container">
+        <span class="lives"></span>
+        <span class="smiley" onclick="onInit()"></span>
+        <span class="hints">
+            <span onclick="onHint(this)">💡</span>
+            <span onclick="onHint(this)">💡</span>
+            <span onclick="onHint(this)">💡</span>
+        </span>
     </div>
 
     <div class="board-container"></div>
