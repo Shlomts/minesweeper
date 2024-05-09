@@ -62,6 +62,7 @@ table {
 
 .lives {
     font-size: 20px;
+    margin-left: 40px;
 }
 
 .smiley {
@@ -73,6 +74,19 @@ table {
 .hints {
     margin-left: 40px;
 }
+
+
+.flags, .timer {
+    
+    font-size: 30px;
+    font-family: fantasy;
+}
+
+.timer {
+    margin-left: 40px;
+}
+
+
 
 .game-over {
     position: absolute;

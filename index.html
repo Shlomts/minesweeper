@@ -20,13 +20,11 @@
     </div>
 
     <div class="extra-features-container">
+        <span class="flags"></span>
         <span class="lives"></span>
         <span class="smiley" onclick="onInit()"></span>
-        <span class="hints">
-            <span onclick="onHint(this)">💡</span>
-            <span onclick="onHint(this)">💡</span>
-            <span onclick="onHint(this)">💡</span>
-        </span>
+        <span class="hints" onclick="onHint()"></span>
+        <span class="timer"></span>
     </div>
 
     <div class="board-container"></div>
@@ -40,7 +38,9 @@
     <footer>Shlomit Horn</footer>
 
     <script src="js/utils.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/manage.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/action.js"></script>
 
 </body>
 </html>
