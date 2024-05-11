@@ -169,7 +169,7 @@ function lostGame() {
     }
 
     renderBoard(gBoard)
-
+    renderSmiley(`lose`)
     gameOver(false)
 }
 
